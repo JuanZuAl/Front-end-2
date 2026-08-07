@@ -8,6 +8,7 @@ function AppRoutes() {
   return (
     <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/students" element={<Students />} />
         <Route path="/enrollment" element={<Enrollment />} />
