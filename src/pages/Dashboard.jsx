@@ -1,15 +1,11 @@
-import Footer from "../components/Footer";
-import Encabezado from "../components/Nav";
+import MainLayout from "../Layouts/MainLayout";
 
 function Dashboard() {
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <Encabezado />
-      <Footer />
-    </div>  
+      <MainLayout>
+      </MainLayout>
   );
 }
 
-export default Dashboard;9
+export default Dashboard

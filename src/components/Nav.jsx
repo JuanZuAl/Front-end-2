@@ -1,8 +1,21 @@
-function Encabezado() {
+function nav() {
     return (
-      <header className="h-16 bg-gray-800  border-b border-gray-600 flex items-center px 6 text-white p-4 text-2xl">
-    <h1>Sistema de Gestión</h1>
-      </header>
+      <nav>
+        <ul>
+          <li className="nav-item">
+            <a href="/Dashboard">Dashboard</a>
+          </li>
+          <li className="nav-item">
+            <a href="/Courses">Cursos</a>
+          </li>
+          <li className="nav-item">
+            <a href="/Enrollment">Matricula</a>
+          </li>
+          <li className="nav-item">
+            <a href="/Students">Estudiantes</a>
+          </li>
+        </ul>
+      </nav>
     );
 }
-export default Encabezado;
+export default nav;

@@ -1,8 +1,9 @@
+import MainLayout from "../Layouts/MainLayout";
+
 function Enrollment() {
     return (
-        <div>
-            <h1>Enrollment</h1>
-        </div>
+      <MainLayout>
+      </MainLayout>
     );
 }
 
