@@ -2,7 +2,7 @@
 import Sidebar from "../Components/Sidebar";
 import Footer from "../Components/Footer";
 
-function LayoutDePrueba() {
+function LayoutDePrueba({ children }) {
     return (
         <div className="prueba min-h-screen flex">
              <Sidebar/>
@@ -11,7 +11,7 @@ function LayoutDePrueba() {
                     <h1>Sistema de Gestion de Cursos</h1>
                 </div>
                 <div className="flex-1">
-                    <h1>medio</h1>
+                    {children}
                 </div>
                 <div>
                     <Footer/>
