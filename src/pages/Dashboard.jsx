@@ -1,11 +1,12 @@
 import MainLayout from "../Layouts/MainLayout";
+import Header from "../components/Header";
 
 function Dashboard() {
 
   return (
       <MainLayout >
-        <div className=" flex  m-screen text-2xl font-bold">
-          Dashboard
+        <div className=" flex  flex-col p-6">
+          <Header title="Dashboard" description="Resumen de las actividades del sistema" />
         </div>
       </MainLayout>
   );
