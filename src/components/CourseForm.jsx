@@ -1,10 +1,10 @@
-import { useStudentForm } from "../hooks/useStudentForm";
+import { useCourseForm } from "../hooks/useCourseForm";
 
 const inputClass =
     "w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500";
 
-function StudentForm({ student, onSubmit, onCancel, saving = false, submitText = "Guardar" }) {
-    const { formData, errors, handleChange, getValidData } = useStudentForm(student);
+function CourseForm({ course, onSubmit, onCancel, saving = false, submitText = "Guardar" }) {
+    const { formData, errors, handleChange, getValidData } = useCourseForm(course);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,52 +21,52 @@ function StudentForm({ student, onSubmit, onCancel, saving = false, submitText =
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
                     type="text"
-                    name="first_name"
-                    value={formData.first_name}
+                    name="code"
+                    value={formData.code}
+                    onChange={handleChange}
+                    placeholder="Codigo"
+                    className={inputClass}
+                />
+                {errors.code && <p className="text-red-500 text-sm mt-1">{errors.code}</p>}
+            </div>
+
+            <div>
+                <label className="block text-sm text-slate-600 mb-1"></label>
+                <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
                     placeholder="Nombre"
                     className={inputClass}
                 />
-                {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>}
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
             </div>
 
             <div>
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
                     type="text"
-                    name="last_name"
-                    value={formData.last_name}
+                    name="description"
+                    value={formData.description}
                     onChange={handleChange}
-                    placeholder="Apellido"
+                    placeholder="Descripción"
                     className={inputClass}
                 />
-                {errors.last_name && <p className="text-red-500 text-sm mt-1">{errors.last_name}</p>}
+                {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
             </div>
 
             <div>
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
+                    type="number"
+                    name="max_capacity"
+                    value={formData.max_capacity}
                     onChange={handleChange}
-                    placeholder="Correo"
+                    placeholder="Capacidad Máxima"
                     className={inputClass}
                 />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-            </div>
-
-            <div>
-                <label className="block text-sm text-slate-600 mb-1"></label>
-                <input
-                    type="text"
-                    name="phone_number"
-                    value={formData.phone_number}
-                    onChange={handleChange}
-                    placeholder="Celular"
-                    className={inputClass}
-                />
-                {errors.phone_number && <p className="text-red-500 text-sm mt-1">{errors.phone_number}</p>}
+                {errors.max_capacity && <p className="text-red-500 text-sm mt-1">{errors.max_capacity}</p>}
             </div>
 
             <div className="flex justify-end gap-2 pt-2">
@@ -90,4 +90,4 @@ function StudentForm({ student, onSubmit, onCancel, saving = false, submitText =
     );
 }
 
-export default StudentForm;
+export default CourseForm;
