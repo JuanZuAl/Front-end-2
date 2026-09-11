@@ -1,8 +1,8 @@
-const getStudentId = (student) => student?.student_id ?? student?.id;
+const getCourseId = (course) => course?.course_id ?? course?.id;
 
-function StudentTable({ students = [], loading = false, listError = null, deletingId = null, onEdit, onDelete }) {
+function CourseTable({ courses = [], loading = false, listError = null, deletingId = null, onEdit, onDelete }) {
     if (loading) {
-        return <p className="text-gray-500">Cargando estudiantes...</p>;
+        return <p className="text-gray-500">Cargando cursos...</p>;
     }
 
     return (
@@ -13,43 +13,43 @@ function StudentTable({ students = [], loading = false, listError = null, deleti
                 </p>
             )}
 
-            {!students.length ? (
+            {!courses.length ? (
                 <div className="p-4 border border-dashed border-gray-300 rounded-lg text-gray-500 bg-white">
-                    No hay estudiantes registrados.
+                    No hay cursos registrados.
                 </div>
             ) : (
                 <table className="w-full border border-gray-300 rounded-lg overflow-hidden shadow-md bg-white">
                     <thead className="bg-gray-100">
                         <tr>
                             <th className="text-left p-4">Id</th>
+                            <th className="text-left p-4">Codigo</th>
                             <th className="text-left p-4">Nombre</th>
-                            <th className="text-left p-4">Apellido</th>
-                            <th className="text-left p-4">Correo</th>
-                            <th className="text-left p-4">Celular</th>
+                            <th className="text-left p-4">Descripción</th>
+                            <th className="text-left p-4">Capacidad Máxima</th>
                             <th className="text-center p-4">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {students.map((student) => (
-                            <tr key={getStudentId(student)} className="border-t border-gray-300">
-                                <td className="p-4 border-t border-gray-300 border-b">{getStudentId(student)}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.first_name}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.last_name}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.email}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.phone_number}</td>
+                        {courses.map((course) => (
+                            <tr key={getCourseId(course)} className="border-t border-gray-300">
+                                <td className="p-4 border-t border-gray-300 border-b">{getCourseId(course)}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{course.code}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{course.name}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{course.description}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{course.max_capacity}</td>
                                 <td className="p-4 border-t border-gray-300 border-b text-center">
                                     <button
-                                        onClick={() => onEdit(student)}
+                                        onClick={() => onEdit(course)}
                                         className="bg-blue-500 text-white p-2 rounded mr-2 hover:bg-blue-700 cursor-pointer"
                                     >
                                         Editar
                                     </button>
                                     <button
-                                        onClick={() => onDelete(getStudentId(student))}
-                                        disabled={deletingId === getStudentId(student)}
+                                        onClick={() => onDelete(getCourseId(course))}
+                                        disabled={deletingId === getCourseId(course)}
                                         className="bg-red-500 text-white p-2 rounded hover:bg-red-700 cursor-pointer disabled:opacity-50"
                                     >
-                                        {deletingId === getStudentId(student) ? "Eliminando..." : "Eliminar"}
+                                        {deletingId === getCourseId(course) ? "Eliminando..." : "Eliminar"}
                                     </button>
                                 </td>
                             </tr>
@@ -61,4 +61,4 @@ function StudentTable({ students = [], loading = false, listError = null, deleti
     );
 }
 
-export default StudentTable;
+export default CourseTable;

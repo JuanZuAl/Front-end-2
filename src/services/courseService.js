@@ -1,13 +1,14 @@
 import { supabase } from "../config/supabase";
 
-const TABLE = "students";
+const TABLE = "courses";
 
-// Lista todos los estudiantes ordenados por id
-export const getStudents = async () => {
+
+// Lista todos los cursos ordenados por id
+export const getCourses = async () => {
   const { data, error } = await supabase
     .from(TABLE)
     .select("*")
-    .order("student_id", { ascending: true });
+    .order("course_id", { ascending: true });
 
   if (error) {
     throw error;
@@ -16,12 +17,13 @@ export const getStudents = async () => {
   return data ?? [];
 };
 
-// Trae un estudiante puntual por su id
-export const getStudentById = async (studentId) => {
+
+// Trae un curso puntual por su id
+export const getCourseById = async (courseId) => {
   const { data, error } = await supabase
     .from(TABLE)
     .select("*")
-    .eq("student_id", studentId)
+    .eq("course_id", courseId)
     .single();
 
   if (error) {
@@ -31,11 +33,12 @@ export const getStudentById = async (studentId) => {
   return data;
 };
 
-// Crea un estudiante y devuelve el registro insertado
-export const createStudent = async (newStudentData) => {
+
+// Crea un curso y devuelve el registro insertado
+export const createCourse = async (newCourseData) => {
   const { data, error } = await supabase
     .from(TABLE)
-    .insert(newStudentData)
+    .insert(newCourseData)
     .select()
     .single();
 
@@ -46,12 +49,13 @@ export const createStudent = async (newStudentData) => {
   return data;
 };
 
-// Actualiza un estudiante y devuelve el registro actualizado
-export const updateStudent = async (studentId, updatedData) => {
+
+// Actualiza un curso y devuelve el registro actualizado
+export const updateCourse = async (courseId, updatedData) => {
   const { data, error } = await supabase
     .from(TABLE)
     .update(updatedData)
-    .eq("student_id", studentId)
+    .eq("course_id", courseId)
     .select()
     .single();
 
@@ -62,12 +66,13 @@ export const updateStudent = async (studentId, updatedData) => {
   return data;
 };
 
-// Elimina un estudiante por id
-export const deleteStudent = async (studentId) => {
+
+// Elimina un curso por id
+export const deleteCourse = async (courseId) => {
   const { error } = await supabase
     .from(TABLE)
     .delete()
-    .eq("student_id", studentId);
+    .eq("course_id", courseId);
 
   if (error) {
     throw error;

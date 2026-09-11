@@ -1,13 +1,13 @@
 import { supabase } from "../config/supabase";
 
-const TABLE = "students";
+const TABLE = "enrollments";
 
 // Lista todos los estudiantes ordenados por id
-export const getStudents = async () => {
+export const getEnrollments = async () => {
   const { data, error } = await supabase
     .from(TABLE)
     .select("*")
-    .order("student_id", { ascending: true });
+    .order("enrollment_id", { ascending: true });
 
   if (error) {
     throw error;
@@ -17,11 +17,11 @@ export const getStudents = async () => {
 };
 
 // Trae un estudiante puntual por su id
-export const getStudentById = async (studentId) => {
+export const getEnrollmentById = async (enrollmentId) => {
   const { data, error } = await supabase
     .from(TABLE)
     .select("*")
-    .eq("student_id", studentId)
+    .eq("enrollment_id", enrollmentId)
     .single();
 
   if (error) {
@@ -32,10 +32,10 @@ export const getStudentById = async (studentId) => {
 };
 
 // Crea un estudiante y devuelve el registro insertado
-export const createStudent = async (newStudentData) => {
+export const createEnrollment = async (newEnrollmentData) => {
   const { data, error } = await supabase
     .from(TABLE)
-    .insert(newStudentData)
+    .insert(newEnrollmentData)
     .select()
     .single();
 
@@ -47,11 +47,11 @@ export const createStudent = async (newStudentData) => {
 };
 
 // Actualiza un estudiante y devuelve el registro actualizado
-export const updateStudent = async (studentId, updatedData) => {
+export const updateEnrollment = async (enrollmentId, updatedData) => {
   const { data, error } = await supabase
     .from(TABLE)
     .update(updatedData)
-    .eq("student_id", studentId)
+    .eq("enrollment_id", enrollmentId)
     .select()
     .single();
 
@@ -63,11 +63,11 @@ export const updateStudent = async (studentId, updatedData) => {
 };
 
 // Elimina un estudiante por id
-export const deleteStudent = async (studentId) => {
+export const deleteEnrollment = async (enrollmentId) => {
   const { error } = await supabase
     .from(TABLE)
     .delete()
-    .eq("student_id", studentId);
+    .eq("enrollment_id", enrollmentId);
 
   if (error) {
     throw error;
