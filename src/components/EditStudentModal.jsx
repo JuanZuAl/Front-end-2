@@ -48,7 +48,7 @@ function EditStudentModal({ isOpen, student, onClose, onSave, saving = false, er
                     )}
 
                     <StudentForm
-                        key={student ? student.student_id ?? student.id : "new"}
+                        key={student ? student.studentId ?? student.id : "new"}
                         student={student}
                         onSubmit={onSave}
                         onCancel={onClose}

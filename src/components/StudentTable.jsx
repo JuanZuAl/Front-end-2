@@ -1,4 +1,4 @@
-const getStudentId = (student) => student?.student_id ?? student?.id;
+const getStudentId = (student) => student?.studentId ?? student?.id;
 
 function StudentTable({ students = [], loading = false, listError = null, deletingId = null, onEdit, onDelete }) {
     if (loading) {
@@ -33,10 +33,10 @@ function StudentTable({ students = [], loading = false, listError = null, deleti
                         {students.map((student) => (
                             <tr key={getStudentId(student)} className="border-t border-gray-300">
                                 <td className="p-4 border-t border-gray-300 border-b">{getStudentId(student)}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.first_name}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.last_name}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.email}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{student.phone_number}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{student.firstName}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{student.lastName}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{student.email}</td>  
+                                <td className="p-4 border-t border-gray-300 border-b">{student.phoneNumber}</td>
                                 <td className="p-4 border-t border-gray-300 border-b text-center">
                                     <button
                                         onClick={() => onEdit(student)}

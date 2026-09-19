@@ -18,29 +18,41 @@ function StudentForm({ student, onSubmit, onCancel, saving = false, submitText =
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
+                <label className="block text-sm text-slate-600 mb-1">ID del estudiante</label>
+                <input
+                    type="number"
+                    name="studentId"
+                    value={formData.studentId}
+                    onChange={handleChange}
+                    placeholder="ID del estudiante"
+                    className={inputClass}
+                />
+                {errors.studentId && <p className="text-red-500 text-sm mt-1">{errors.studentId}</p>}
+            </div>
+            <div>
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
                     type="text"
-                    name="first_name"
-                    value={formData.first_name}
+                    name="firstName"
+                    value={formData.firstName}
                     onChange={handleChange}
                     placeholder="Nombre"
                     className={inputClass}
                 />
-                {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>}
+                {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
             </div>
 
             <div>
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
                     type="text"
-                    name="last_name"
-                    value={formData.last_name}
+                    name="lastName"
+                    value={formData.lastName}
                     onChange={handleChange}
                     placeholder="Apellido"
                     className={inputClass}
                 />
-                {errors.last_name && <p className="text-red-500 text-sm mt-1">{errors.last_name}</p>}
+                {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
             </div>
 
             <div>
@@ -60,13 +72,13 @@ function StudentForm({ student, onSubmit, onCancel, saving = false, submitText =
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
                     type="text"
-                    name="phone_number"
-                    value={formData.phone_number}
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
                     onChange={handleChange}
                     placeholder="Celular"
                     className={inputClass}
                 />
-                {errors.phone_number && <p className="text-red-500 text-sm mt-1">{errors.phone_number}</p>}
+                {errors.phoneNumber && <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>}
             </div>
 
             <div className="flex justify-end gap-2 pt-2">
