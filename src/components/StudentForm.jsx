@@ -18,7 +18,7 @@ function StudentForm({ student, onSubmit, onCancel, saving = false, submitText =
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
-                <label className="block text-sm text-slate-600 mb-1">ID del estudiante</label>
+                <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
                     type="number"
                     name="studentId"

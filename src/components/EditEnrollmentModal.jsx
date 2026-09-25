@@ -49,7 +49,7 @@ function EditEnrollmentModal({ isOpen, enrollment, onClose, onSave, saving = fal
                     )}
 
                     <EnrollmentForm
-                        key={enrollment ? enrollment.enrollment_id ?? enrollment.id : "new"}
+                        key={enrollment ? enrollment.enrollmentId ?? enrollment.id : "new"}
                         enrollment={enrollment}
                         onSubmit={onSave}
                         onCancel={onClose}

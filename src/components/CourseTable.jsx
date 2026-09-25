@@ -1,4 +1,4 @@
-const getCourseId = (course) => course?.course_id ?? course?.id;
+const getCourseId = (course) => course?.courseId ?? course?.id;
 
 function CourseTable({ courses = [], loading = false, listError = null, deletingId = null, onEdit, onDelete }) {
     if (loading) {
@@ -36,7 +36,7 @@ function CourseTable({ courses = [], loading = false, listError = null, deleting
                                 <td className="p-4 border-t border-gray-300 border-b">{course.code}</td>
                                 <td className="p-4 border-t border-gray-300 border-b">{course.name}</td>
                                 <td className="p-4 border-t border-gray-300 border-b">{course.description}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{course.max_capacity}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{course.maxCapacity}</td>
                                 <td className="p-4 border-t border-gray-300 border-b text-center">
                                     <button
                                         onClick={() => onEdit(course)}

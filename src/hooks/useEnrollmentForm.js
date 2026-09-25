@@ -2,9 +2,10 @@ import { useState } from "react";
 
 // Las claves coinciden con las columnas de la tabla enrollments en Supabase
 const EMPTY_ENROLLMENT = {
-    student_id: "",
-    course_id: "",
-    enrollment_date: "",
+    enrollmentId: "",
+    studentId: "",
+    courseId: "",
+    enrollmentDate: "",
     status: "",
 };
 
@@ -15,9 +16,10 @@ export function useEnrollmentForm(enrollment) {
     const [formData, setFormData] = useState(() => ({
         ...EMPTY_ENROLLMENT,
         // Los ids llegan como numero desde la BD; el select trabaja con strings
-        student_id: String(enrollment?.student_id ?? ""),
-        course_id: String(enrollment?.course_id ?? ""),
-        enrollment_date: enrollment?.enrollment_date ?? "",
+        enrollmentId: String(enrollment?.enrollmentId ?? ""),
+        studentId: String(enrollment?.studentId ?? ""),
+        courseId: String(enrollment?.courseId ?? ""),
+        enrollmentDate: enrollment?.enrollmentDate ?? "",
         status: enrollment?.status ?? "",
     }));
     const [errors, setErrors] = useState({});
@@ -29,15 +31,17 @@ export function useEnrollmentForm(enrollment) {
 
     const validate = () => {
         const newErrors = {};
-
-        if (!formData.student_id.trim()) {
-            newErrors.student_id = "El estudiante es obligatorio";
+        if (!formData.enrollmentId.trim()) {
+            newErrors.enrollmentId = "El ID de la matrícula es obligatorio";
         }
-        if (!formData.course_id.trim()) {
-            newErrors.course_id = "El curso es obligatorio";
+        if (!formData.studentId.trim()) {
+            newErrors.studentId = "El estudiante es obligatorio";
         }
-        if (!formData.enrollment_date.trim()) {
-            newErrors.enrollment_date = "La fecha de matrícula es obligatoria";
+        if (!formData.courseId.trim()) {
+            newErrors.courseId = "El curso es obligatorio";
+        }
+        if (!formData.enrollmentDate.trim()) {
+            newErrors.enrollmentDate = "La fecha de matrícula es obligatoria";
         }
         if (!formData.status.trim()) {
             newErrors.status = "El estado es obligatorio";
@@ -51,9 +55,10 @@ export function useEnrollmentForm(enrollment) {
         if (!validate()) return null;
 
         return {
-            student_id: Number(formData.student_id),
-            course_id: Number(formData.course_id),
-            enrollment_date: formData.enrollment_date.trim(),
+            enrollmentId: Number(formData.enrollmentId),
+            studentId: Number(formData.studentId),
+            courseId: Number(formData.courseId),
+            enrollmentDate: formData.enrollmentDate.trim(),
             status: formData.status.trim(),
         };
     };

@@ -20,7 +20,19 @@ function CourseForm({ course, onSubmit, onCancel, saving = false, submitText = "
             <div>
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
-                    type="text"
+                    type="number"
+                    name="courseId"
+                    value={formData.courseId}
+                    onChange={handleChange}
+                    placeholder="Id del curso"
+                    className={inputClass}
+                />
+                {errors.courseId && <p className="text-red-500 text-sm mt-1">{errors.courseId}</p>}
+            </div>
+            <div>
+                <label className="block text-sm text-slate-600 mb-1"></label>
+                <input
+                    type="number"
                     name="code"
                     value={formData.code}
                     onChange={handleChange}
@@ -60,13 +72,13 @@ function CourseForm({ course, onSubmit, onCancel, saving = false, submitText = "
                 <label className="block text-sm text-slate-600 mb-1"></label>
                 <input
                     type="number"
-                    name="max_capacity"
-                    value={formData.max_capacity}
+                    name="maxCapacity"
+                    value={formData.maxCapacity}
                     onChange={handleChange}
                     placeholder="Capacidad Máxima"
                     className={inputClass}
                 />
-                {errors.max_capacity && <p className="text-red-500 text-sm mt-1">{errors.max_capacity}</p>}
+                {errors.maxCapacity && <p className="text-red-500 text-sm mt-1">{errors.maxCapacity}</p>}
             </div>
 
             <div className="flex justify-end gap-2 pt-2">

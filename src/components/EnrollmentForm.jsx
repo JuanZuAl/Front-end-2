@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useEnrollmentForm } from "../hooks/useEnrollmentForm";
-import { getStudents } from "../services/studentService";
-import { getCourses } from "../services/courseService";
+import { getStudents } from "../services/studentDbService";
+import { getCourses } from "../services/courseDbService";
 
 const inputClass =
     "w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500";
@@ -66,10 +66,25 @@ function EnrollmentForm({ enrollment, onSubmit, onCancel, saving = false, submit
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
             <div>
+                <label className="block text-sm text-slate-600 mb-1">ID de la matrícula</label>
+                <input
+                    type="number"
+                    name="enrollmentId"
+                    value={formData.enrollmentId}
+                    onChange={handleChange}
+                    placeholder="ID de la matrícula"
+                    // El id es la llave primaria: no se puede cambiar al editar
+                    disabled={Boolean(enrollment)}
+                    className={`${inputClass} disabled:bg-gray-100`}
+                />
+                {errors.enrollmentId && <p className="text-red-500 text-sm mt-1">{errors.enrollmentId}</p>}
+            </div>
+
+            <div>
                 <label className="block text-sm text-slate-600 mb-1">Estudiante</label>
                 <select
-                    name="student_id"
-                    value={formData.student_id}
+                    name="studentId"
+                    value={formData.studentId}
                     onChange={handleChange}
                     className={inputClass}
                 >
@@ -77,19 +92,19 @@ function EnrollmentForm({ enrollment, onSubmit, onCancel, saving = false, submit
                         {loadingStudents ? "Cargando estudiantes..." : "Seleccione un estudiante"}
                     </option>
                     {students.map((student) => (
-                        <option key={student.student_id} value={student.student_id}>
-                            {student.first_name} {student.last_name}
+                        <option key={student.studentId} value={student.studentId}>
+                            {student.firstName} {student.lastName}
                         </option>
                     ))}
                 </select>
-                {errors.student_id && <p className="text-red-500 text-sm mt-1">{errors.student_id}</p>}
+                {errors.studentId && <p className="text-red-500 text-sm mt-1">{errors.studentId}</p>}
             </div>
 
             <div>
                 <label className="block text-sm text-slate-600 mb-1">Curso</label>
                 <select
-                    name="course_id"
-                    value={formData.course_id}
+                    name="courseId"
+                    value={formData.courseId}
                     onChange={handleChange}
                     className={inputClass}
                 >
@@ -97,36 +112,40 @@ function EnrollmentForm({ enrollment, onSubmit, onCancel, saving = false, submit
                         {loadingCourses ? "Cargando cursos..." : "Seleccione un curso"}
                     </option>
                     {courses.map((course) => (
-                        <option key={course.course_id} value={course.course_id}>
+                        <option key={course.courseId} value={course.courseId}>
                             {course.name}
                         </option>
                     ))}
                 </select>
-                {errors.course_id && <p className="text-red-500 text-sm mt-1">{errors.course_id}</p>}
+                {errors.courseId && <p className="text-red-500 text-sm mt-1">{errors.courseId}</p>}
             </div>
 
             <div>
                 <label className="block text-sm text-slate-600 mb-1">Fecha de matrícula</label>
                 <input
                     type="date"
-                    name="enrollment_date"
-                    value={formData.enrollment_date}
+                    name="enrollmentDate"
+                    value={formData.enrollmentDate}
                     onChange={handleChange}
                     className={inputClass}
                 />
-                {errors.enrollment_date && <p className="text-red-500 text-sm mt-1">{errors.enrollment_date}</p>}
+                {errors.enrollmentDate && <p className="text-red-500 text-sm mt-1">{errors.enrollmentDate}</p>}
             </div>
 
             <div>
                 <label className="block text-sm text-slate-600 mb-1">Estado</label>
-                <input
-                    type="text"
+                {/* Los valores deben coincidir con el enum EnrollmentStatus del backend */}
+                <select
                     name="status"
                     value={formData.status}
                     onChange={handleChange}
-                    placeholder="Estado"
                     className={inputClass}
-                />
+                >
+                    <option value="">Selecciona un estado</option>
+                    <option value="ACTIVE">Activa</option>
+                    <option value="CANCELLED">Cancelada</option>
+                    <option value="COMPLETED">Completada</option>
+                </select>
                 {errors.status && <p className="text-red-500 text-sm mt-1">{errors.status}</p>}
             </div>
 
