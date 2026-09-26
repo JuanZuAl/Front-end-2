@@ -48,7 +48,7 @@ function EditCourseModal({ isOpen, course, onClose, onSave, saving = false, erro
                     )}
 
                     <CourseForm
-                        key={course ? course.course_id ?? course.id : "new"}
+                        key={course ? course.courseId ?? course.id : "new"}
                         course={course}
                         onSubmit={onSave}
                         onCancel={onClose}

@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 const EMPTY_STUDENT = {
-    first_name: "",
-    last_name: "",
+    studentId: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    phone_number: "",
+    phoneNumber: "",
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,10 +16,11 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function useStudentForm(student) {
     const [formData, setFormData] = useState(() => ({
         ...EMPTY_STUDENT,
-        first_name: student?.first_name ?? "",
-        last_name: student?.last_name ?? "",
+        studentId: student?.studentId ?? "",
+        firstName: student?.firstName ?? "",
+        lastName: student?.lastName ?? "",
         email: student?.email ?? "",
-        phone_number: student?.phone_number ?? "",
+        phoneNumber: student?.phoneNumber ?? "",
     }));
     const [errors, setErrors] = useState({});
 
@@ -29,17 +31,22 @@ export function useStudentForm(student) {
 
     const validate = () => {
         const newErrors = {};
-
-        if (!formData.first_name.trim()) {
-            newErrors.first_name = "El nombre es obligatorio";
+        if (!formData.studentId) {
+            newErrors.studentId = "El ID del estudiante es obligatorio";
         }
-        if (!formData.last_name.trim()) {
-            newErrors.last_name = "El apellido es obligatorio";
+        if (!formData.firstName.trim()) {
+            newErrors.firstName = "El nombre es obligatorio";
+        }
+        if (!formData.lastName.trim()) {
+            newErrors.lastName = "El apellido es obligatorio";
         }
         if (!formData.email.trim()) {
             newErrors.email = "El correo es obligatorio";
         } else if (!EMAIL_REGEX.test(formData.email.trim())) {
             newErrors.email = "El correo no es valido";
+        }
+        if (!formData.phoneNumber.trim()) {
+            newErrors.phoneNumber = "El celular es obligatorio";
         }
 
         setErrors(newErrors);
@@ -51,10 +58,11 @@ export function useStudentForm(student) {
         if (!validate()) return null;
 
         return {
-            first_name: formData.first_name.trim(),
-            last_name: formData.last_name.trim(),
+            studentId: Number(formData.studentId),
+            firstName: formData.firstName.trim(),
+            lastName: formData.lastName.trim(),
             email: formData.email.trim(),
-            phone_number: formData.phone_number.trim(),
+            phoneNumber: formData.phoneNumber.trim(),
         };
     };
 

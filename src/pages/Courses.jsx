@@ -8,10 +8,10 @@ import {
   createCourse,
   updateCourse,
   deleteCourse,
-} from "../services/courseService";
+} from "../services/courseDbService";
 
 // La tabla usa course_id, pero dejamos id como respaldo
-const getCourseId = (course) => course?.course_id ?? course?.id;
+const getCourseId = (course) => course?.courseId ?? course?.id;
 
 function Courses() {
   const [courses, setCourses] = useState([]);

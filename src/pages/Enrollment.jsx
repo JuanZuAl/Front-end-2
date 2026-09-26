@@ -8,9 +8,9 @@ import {
   createEnrollment,
   updateEnrollment,
   deleteEnrollment,
-} from "../services/enrollmentService";
+} from "../services/enrollmentDbService";
 
-const getEnrollmentId = (enrollment) => enrollment?.enrollment_id ?? enrollment?.id;
+const getEnrollmentId = (enrollment) => enrollment?.enrollmentId ?? enrollment?.id;
 
 function Enrollment() {
   const [enrollments, setEnrollments] = useState([]);
@@ -90,7 +90,11 @@ function Enrollment() {
       setEditingEnrollment(null);
     } catch (error) {
       console.error("Error al guardar la matrícula:", error);
-      setSaveError(error.message ?? "No se pudo guardar la matrícula.");
+      // El backend devuelve el motivo del error como texto en el body
+      // (los errores que maneja Spring por defecto llegan como objeto con "message")
+      const data = error.response?.data;
+      const message = typeof data === "string" ? data : data?.message;
+      setSaveError(message ?? error.message ?? "No se pudo guardar la matrícula.");
     } finally {
       setSaving(false);
     }

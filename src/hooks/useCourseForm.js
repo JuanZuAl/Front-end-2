@@ -1,20 +1,22 @@
 import { useState } from "react";
 
 const EMPTY_COURSE = {
+    courseId: "",
     code: "",
     name: "",
     description: "",
-    max_capacity: "",
+    maxCapacity: "",
 };
 
 export function useCourseForm(course) {
     const [formData, setFormData] = useState(() => ({
         ...EMPTY_COURSE,
+        courseId: course?.courseId ?? "",
         code: course?.code ?? "",
         name: course?.name ?? "",
         description: course?.description ?? "",
         // La capacidad llega como numero desde la BD; el input trabaja con strings
-        max_capacity: String(course?.max_capacity ?? ""),
+        maxCapacity: course?.maxCapacity ?? "",
     }));
     const [errors, setErrors] = useState({});
 
@@ -25,7 +27,9 @@ export function useCourseForm(course) {
 
     const validate = () => {
         const newErrors = {};
-
+        if (!formData.courseId) {
+            newErrors.courseId = "El ID del curso es obligatorio";
+        }
         if (!formData.code.trim()) {
             newErrors.code = "El código es obligatorio";
         }
@@ -35,8 +39,8 @@ export function useCourseForm(course) {
         if (!formData.description.trim()) {
             newErrors.description = "La descripción es obligatoria";
         }
-        if (!formData.max_capacity.trim()) {
-            newErrors.max_capacity = "La capacidad máxima es obligatoria";
+        if (!formData.maxCapacity) {
+            newErrors.maxCapacity = "La capacidad máxima es obligatoria";
         }
 
         setErrors(newErrors);
@@ -48,10 +52,11 @@ export function useCourseForm(course) {
         if (!validate()) return null;
 
         return {
+            courseId: Number(formData.courseId),
             code: formData.code.trim(),
             name: formData.name.trim(),
             description: formData.description.trim(),
-            max_capacity: Number(formData.max_capacity),
+            maxCapacity: Number(formData.maxCapacity),
         };
     };
 

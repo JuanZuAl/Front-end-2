@@ -1,4 +1,4 @@
-const getEnrollmentId = (enrollment) => enrollment?.enrollment_id ?? enrollment?.id;
+const getEnrollmentId = (enrollment) => enrollment?.enrollmentId ?? enrollment?.id;
 
 function EnrollmentTable({ enrollments = [], loading = false, listError = null, deletingId = null, onEdit, onDelete }) {
     if (loading) {
@@ -33,9 +33,9 @@ function EnrollmentTable({ enrollments = [], loading = false, listError = null, 
                         {enrollments.map((enrollment) => (
                             <tr key={getEnrollmentId(enrollment)} className="border-t border-gray-300">
                                 <td className="p-4 border-t border-gray-300 border-b">{getEnrollmentId(enrollment)}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{enrollment.student_id}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{enrollment.course_id}</td>
-                                <td className="p-4 border-t border-gray-300 border-b">{enrollment.enrollment_date}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{enrollment.studentId}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{enrollment.courseId}</td>
+                                <td className="p-4 border-t border-gray-300 border-b">{enrollment.enrollmentDate}</td>
                                 <td className="p-4 border-t border-gray-300 border-b">{enrollment.status}</td>
                                 <td className="p-4 border-t border-gray-300 border-b text-center">
                                     <button

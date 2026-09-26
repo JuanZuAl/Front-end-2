@@ -8,10 +8,10 @@ import {
   createStudent,
   updateStudent,
   deleteStudent,
-} from "../services/studentService";
+} from "../services/studentDbService";
 
-// La tabla usa student_id, pero dejamos id como respaldo
-const getStudentId = (student) => student?.student_id ?? student?.id;
+// El backend responde studentId, pero dejamos id como respaldo
+const getStudentId = (student) => student?.studentId ?? student?.id;
 
 function Students() {
   const [students, setStudents] = useState([]);
